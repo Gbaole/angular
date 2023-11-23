@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-author-detail',
@@ -9,5 +9,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './author-detail.component.css'
 })
 export class AuthorDetailComponent {
+  name!: string;
+  personal_name!: string;
+  death_date!: string;
+  alternate_names!: string[];
+  created!: CreatedTime;
+  last_modified!: CreatedTime;
+  latest_revision!: number;
+  key!: string;
+  birth_date!: string;
+  revision!: number;
+  type!: string;
+  remote_ids!: RemoteIDs;
+}
+export class CreatedTime {
+  type!: string;
+  value!: Date;
+}
 
+export class RemoteIDs {
+  viaf!: string;
+  wikidata!: string;
+  isni!: string;
 }
