@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { DataService } from '../../services/api.service';
 
 @Component({
   selector: 'app-search-box',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './search-box.component.html',
   styleUrl: './search-box.component.css'
 })
@@ -14,8 +15,9 @@ export class SearchBoxComponent {
   searchQuery: string = '';
   realTimeSearchResults: any[] = [];
   selectedAuthorKey: string = '';
+
   @Output() viewDetails = new EventEmitter<string>();
-  constructor(public dataService: DataService) { }
+  constructor(public dataService: DataService, private router: Router) { }
   search() {
     console.log('Search Query:', this.searchQuery);
 
@@ -26,6 +28,7 @@ export class SearchBoxComponent {
   }
   onInputChange() {
     console.log('Input changed. Performing real-time search...');
+
     this.dataService.realTimeSearchAuthors(this.searchQuery)
       .subscribe(results => {
         this.realTimeSearchResults = results.docs;
@@ -39,7 +42,7 @@ export class SearchBoxComponent {
   selectAuthor(key: string) {
     this.viewDetails.emit(key);
     console.log('Real-Time Search Results:', this.realTimeSearchResults);
-
+    this.router.navigate([`/author/${key}/works`]);
   }
 
 

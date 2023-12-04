@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { AuthorDetail, AuthorSearch, DocAboutAuthor } from '../models/models';
+import { AuthorDetail, AuthorSearch, AuthorWorks, DocAboutAuthor } from '../models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -61,8 +61,8 @@ export class DataService {
   }
 
   getAuthorWorks(authorKey: string): Observable<any> {
-    const authorWorksURL = `https://openlibrary.org/authors/${authorKey}/works.json`;
-    return this.httpClient.get(authorWorksURL);
+    const authorWorksURL = `${this.authorURL}/${authorKey}/works.json`;
+    return this.httpClient.get<AuthorWorks>(authorWorksURL);
   }
 }
 

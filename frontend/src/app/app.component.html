@@ -1,8 +1,9 @@
 <div style=" padding: 10vw;">
   <app-search-box (viewDetails)="handleViewDetails($event)"></app-search-box>
   <div style="margin-top: 3vh;">
-
     <app-card [selectedAuthorKey]="selectedAuthorKey"></app-card>
-  </div>
+    <app-works-list></app-works-list>
 
+  </div>
 </div>
+<router-outlet></router-outlet>

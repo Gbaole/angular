@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DataService } from '../../services/api.service';
-
 @Component({
   selector: 'app-card',
   standalone: true,

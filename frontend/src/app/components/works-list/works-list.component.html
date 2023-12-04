@@ -1,0 +1,40 @@
+<div *ngIf="authorWorks">
+
+  <ul>
+    <li *ngFor="let work of authorWorks.entries">
+      <div>
+        <strong>Title:</strong> {{ work.title }}
+      </div>
+      <div>
+        <strong>Subjects:</strong>
+        <ul>
+          <ng-container *ngIf="work.subjects && work.subjects.length > 0; else noInfo">
+            <li *ngFor="let subject of work.subjects">{{ subject }}
+            </li>
+          </ng-container>
+          <ng-template #noInfo>
+            <li>No Info</li>
+          </ng-template>
+        </ul>
+      </div>
+
+
+      <div>
+        <strong>Created:</strong> {{ work.created.value | date: 'dd/MM/yyyy' }}
+      </div>
+      <div>
+        <strong>Last Modified:</strong> {{ work.last_modified.value | date: 'dd/MM/yyyy' }}
+      </div>
+      <div>
+        <strong>Key:</strong> {{ work.key }}
+      </div>
+      <div>
+        <strong>Latest Revision:</strong> {{ work.latest_revision }}
+      </div>
+      <div>
+        <strong style="color: red;">Revision:</strong> {{ work.revision }}
+      </div>
+      <hr />
+    </li>
+  </ul>
+</div>

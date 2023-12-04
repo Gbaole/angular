@@ -18,7 +18,10 @@
       <td>
         <button (click)="selectAuthor(result.key)">View Details</button>
       </td>
+      <td>
+        <!-- <a [routerLink]="['/','test', result.key,'a']">See Author Works</a> -->
+        <a [routerLink]="['/','author', result.key,'works']">See Author Works</a>
+      </td>
     </tr>
   </tbody>
-
 </table>
