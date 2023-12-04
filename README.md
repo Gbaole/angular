@@ -1,2 +1,0 @@
-# angular
-thuc tap angular

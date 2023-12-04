@@ -1,17 +1,29 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { CardComponent } from './components/card/card.component';
 
+
+import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { DataService } from './services/api.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, HttpClientModule, SearchBoxComponent, CardComponent, RouterModule],
+  providers: [DataService, HttpClient],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.css'
+
 })
+
 export class AppComponent {
-  isCollapsed = false;
+
+
+  selectedAuthorKey: string = '';
+
+  handleViewDetails(key: string) {
+    this.selectedAuthorKey = key;
+  }
 }
