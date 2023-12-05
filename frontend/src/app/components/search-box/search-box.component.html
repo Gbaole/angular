@@ -1,27 +1,39 @@
-<div>
-  <input [(ngModel)]="searchQuery" placeholder="Enter author name" (input)="onInputChange()" />
-  <button (click)="search()">Search</button>
+<div class="my-4 flex items-center">
+  <input [(ngModel)]="searchQuery" placeholder="Enter author name" (input)="onInputChange()"
+    class="p-2 border border-gray-300 rounded-l" />
+  <button (click)="search()" class="p-2 bg-blue-500 text-white rounded-r">Search</button>
 </div>
 
-<table>
+<div *ngIf="isLoading" class="my-4 flex items-center ml-2">
+  <div
+    class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+    role="status">
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+  </div>
+</div>
+
+<table *ngIf="!isLoading && realTimeSearchResults.length > 0" class="w-full border-collapse border border-gray-300">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Key</th>
-      <th>Action</th>
+    <tr class="bg-gray-200">
+      <th class="p-2">Name</th>
+      <th class="p-2">Key</th>
+      <th class="p-2">Action</th>
     </tr>
   </thead>
-  <tbody *ngIf="realTimeSearchResults.length > 0">
-    <tr *ngFor="let result of realTimeSearchResults">
-      <td>{{ result.name }}</td>
-      <td>{{ result.key }}</td>
-      <td>
-        <button (click)="selectAuthor(result.key)">View Details</button>
-      </td>
-      <td>
-        <!-- <a [routerLink]="['/','test', result.key,'a']">See Author Works</a> -->
-        <a [routerLink]="['/','author', result.key,'works']">See Author Works</a>
+  <tbody>
+    <tr *ngFor="let result of realTimeSearchResults" class="hover:bg-gray-100">
+      <td class="p-2">{{ result.name }}</td>
+      <td class="p-2">{{ result.key }}</td>
+      <td class="p-2 flex items-center justify-between">
+        <button (click)="selectAuthor(result.key)" class="bg-green-500 text-white p-1 rounded mx-2">View
+          Details</button>
+        <a (click)="selectAuthor(result.key, true)" class="text-blue-500 hover:underline">See Works</a>
       </td>
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="!isLoading && realTimeSearchResults.length === 0" class="my-4">
+  <p>No results found.</p>
+</div>

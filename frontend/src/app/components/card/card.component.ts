@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DataService } from '../../services/api.service';
+
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -12,7 +13,7 @@ export class CardComponent {
   @Input() selectedAuthorKey: string = '';
   authorDetails: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,) { }
 
   ngOnChanges() {
 

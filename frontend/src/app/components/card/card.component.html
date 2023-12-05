@@ -1,16 +1,13 @@
-<div *ngIf="authorDetails ;else show" class="card">
-  <h1 style="font-weight: bold;">Personal Detail Of {{ authorDetails.name}}</h1>
-  <h2>Author Name: {{ authorDetails.name ? authorDetails.name:'No Info' }}</h2>
-  <p>Personal Name: {{ authorDetails.personal_name ? authorDetails.personal_name :'No Info' }}</p>
-  <p>Birth Date: {{authorDetails.birth_date ? authorDetails.birth_date : 'No Info' }}</p>
-  <p>Death Date: {{authorDetails.death_date ? authorDetails.death_date : 'No Info' }}</p>
-  <div *ngIf="authorDetails.alternate_names && authorDetails.alternate_names.length > 0">
+<div *ngIf="authorDetails" class="bg-white p-6 rounded-md shadow-md">
+  <h1 class="font-bold text-xl mb-4">Personal Detail Of {{ authorDetails.name }}</h1>
+  <h2 class="mb-2">Author Name: {{ authorDetails.name ? authorDetails.name : 'No Info' }}</h2>
+  <p class="mb-2">Personal Name: {{ authorDetails.personal_name ? authorDetails.personal_name : 'No Info' }}</p>
+  <p class="mb-2">Birth Date: {{ authorDetails.birth_date ? authorDetails.birth_date : 'No Info' }}</p>
+  <p class="mb-2">Death Date: {{ authorDetails.death_date ? authorDetails.death_date : 'No Info' }}</p>
+  <div *ngIf="authorDetails.alternate_names && authorDetails.alternate_names.length > 0" class="mb-2">
     <p>Alternate Names: {{ authorDetails.alternate_names.join(', ') }}</p>
   </div>
-  <div *ngIf="!authorDetails.alternate_names || authorDetails.alternate_names.length === 0">
+  <div *ngIf="!authorDetails.alternate_names || authorDetails.alternate_names.length === 0" class="mb-2">
     <p>Alternate Names: No Info</p>
   </div>
 </div>
-<ng-template #show>
-  <p>Please search to choose an author to see their details</p>
-</ng-template>

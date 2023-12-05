@@ -29,18 +29,17 @@ export class DataService {
   updateSearchQuery(query: string) {
     this.searchQuerySource.next(query);
   }
-  searchAuthors(query: string, page: number = 1) {
+  searchAuthors(query: string, page: number = 1, pageSize: number = 10) {
     this.isLoadingSource.next(true);
-    const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}&limit=10&offset=${(page - 1) * 10}`;
+    const offset = (page - 1) * pageSize;
 
+    const apiUrl = `https://openlibrary.org/search/authors.json?q=${query}&limit=${pageSize}&offset=${offset}`;
 
     this.httpClient.get<AuthorSearch>(apiUrl).subscribe(
       (data: AuthorSearch) => {
         this.searchResultsSource.next(data.docs);
         this.isLoadingSource.next(false);
         console.log('API Response:', data);
-
-        this.searchResultsSource.next(data.docs);
       },
       (error) => {
         console.error('API Error:', error);

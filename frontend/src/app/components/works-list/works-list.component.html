@@ -1,40 +1,37 @@
-<div *ngIf="authorWorks">
-
-  <ul>
-    <li *ngFor="let work of authorWorks.entries">
-      <div>
-        <strong>Title:</strong> {{ work.title }}
+<div *ngIf="authorWorks" class="my-4">
+  <ul class="list-none">
+    <li *ngFor="let work of authorWorks.entries" class="mb-4 p-4 border rounded shadow-md bg-white">
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Title:</strong> {{ work.title }}
       </div>
-      <div>
-        <strong>Subjects:</strong>
-        <ul>
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Subjects:</strong>
+        <ul class="list-disc ml-4">
           <ng-container *ngIf="work.subjects && work.subjects.length > 0; else noInfo">
-            <li *ngFor="let subject of work.subjects">{{ subject }}
-            </li>
+            <li *ngFor="let subject of work.subjects">{{ subject }}</li>
           </ng-container>
           <ng-template #noInfo>
             <li>No Info</li>
           </ng-template>
         </ul>
       </div>
-
-
-      <div>
-        <strong>Created:</strong> {{ work.created.value | date: 'dd/MM/yyyy' }}
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Created:</strong> {{ work.created.value | date: 'dd/MM/yyyy' }}
       </div>
-      <div>
-        <strong>Last Modified:</strong> {{ work.last_modified.value | date: 'dd/MM/yyyy' }}
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Last Modified:</strong> {{ work.last_modified.value | date: 'dd/MM/yyyy'
+        }}
       </div>
-      <div>
-        <strong>Key:</strong> {{ work.key }}
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Key:</strong> {{ work.key }}
       </div>
-      <div>
-        <strong>Latest Revision:</strong> {{ work.latest_revision }}
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Latest Revision:</strong> {{ work.latest_revision }}
       </div>
-      <div>
-        <strong style="color: red;">Revision:</strong> {{ work.revision }}
+      <div class="mb-2">
+        <strong class="text-lg font-semibold">Revision:</strong> {{ work.revision }}
       </div>
-      <hr />
+      <hr class="my-4" />
     </li>
   </ul>
 </div>
